@@ -36,12 +36,26 @@
     <div id="pillList"></div>
     <button onclick="addNewPillEntry()" class="add-btn">Add More Pills</button>
   </div>
-
+<!--
   <div class="checkout-section" id="cartSection">
     <h3>Your Cart</h3>
     <div id="cartItems"></div>
     <div class="total">Total: <span id="totalAmount">&#8358;0</span></div>
+-->
+<!-- Checkout Buttons -->
+<button class="checkout-button" onclick="checkoutWhatsApp()">Checkout via WhatsApp</button>
+<button class="checkout-button" onclick="checkoutEmail()">Checkout via Email</button>
 
+<!-- Script to Load External JS from GitHub (with cache-busting) -->
+<script>
+  (function() {
+    const ts = new Date().getTime();
+    const s = document.createElement("script");
+    s.src = "https://slide-t.github.io/checkout.js?v=" + ts;
+    document.head.appendChild(s);
+  })();
+</script>
+  
     <label>Select Your Area</label>
     <select id="locationSelect" onchange="updateDeliveryCost()">
       <option disabled selected>-- Choose Area --</option>
