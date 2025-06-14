@@ -104,7 +104,7 @@ function printOrderSummary() {
 // checkout.js
 
 function checkoutWhatsApp() {
-  const phoneNumber = "2348012345678"; // Replace with your number (no + sign)
+  const phoneNumber = "2349131697494"; // Replace with your number (no + sign)
   const message = encodeURIComponent("Hello, I would like to complete my checkout.");
   window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
 }
