@@ -101,30 +101,13 @@ function scrollToCart() {
 function printOrderSummary() {
   window.print(); // simplified for now
 }
-// checkout.js
 
-function checkoutWhatsApp() {
-  const phoneNumber = "2349131697494"; // Replace with your number (no + sign)
-  const message = encodeURIComponent("Hello, I would like to complete my checkout.");
-  window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
-}
 
-function checkoutEmail() {
-  const email = "youremail@example.com"; // Replace with your email
-  const subject = encodeURIComponent("Checkout Request");
-  const body = encodeURIComponent("Hello, I would like to complete my checkout via email.");
-  window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
-}
+
 
 
 
   
 
-/*function checkoutWhatsApp() {
-  alert("Checkout via WhatsApp coming soon.");
-}
 
-function checkoutEmail() {
-  alert("Checkout via Email coming soon.");
-}*/
 
