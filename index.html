@@ -36,12 +36,16 @@
     <div id="pillList"></div>
     <button onclick="addNewPillEntry()" class="add-btn">Add More Pills</button>
   </div>
-<!--
-  <div class="checkout-section" id="cartSection">
-    <h3>Your Cart</h3>
-    <div id="cartItems"></div>
-    <div class="total">Total: <span id="totalAmount">&#8358;0</span></div>
--->
+<script>
+  // Force GitHub to load the latest checkout.js version with cache-busting
+  (function() {
+    const version = new Date().getTime(); // new unique version every time
+    const script = document.createElement("script");
+    script.src = "https://slide-t.github.io/checkout.js?v=" + version;
+    document.head.appendChild(script);
+  })();
+</script>
+  
 <!-- Checkout Buttons -->
 <button class="checkout-button" onclick="checkoutWhatsApp()">Checkout via WhatsApp</button>
 <button class="checkout-button" onclick="checkoutEmail()">Checkout via Email</button>
