@@ -46,9 +46,6 @@
   })();
 </script>
   
-<!-- Checkout Buttons -->
-<button class="checkout-button" onclick="checkoutWhatsApp()">Checkout via WhatsApp</button>
-<button class="checkout-button" onclick="checkoutEmail()">Checkout via Email</button>
 
 <!-- Script to Load External JS from GitHub (with cache-busting) -->
 <script>
@@ -85,10 +82,16 @@
 
     <div class="location-cost">Delivery Cost: <span id="deliveryCost">&#8358;0</span></div>
     <div class="total">Grand Total: <span id="grandTotal">&#8358;0</span></div>
-
+<!--
     <button onclick="checkoutWhatsApp()" class="checkout-btn">Checkout via WhatsApp</button>
     <button onclick="checkoutEmail()" class="checkout-btn">Checkout via Email</button>
-  </div>
+-->
+  <!-- Checkout Buttons -->
+<button class="checkout-btn" onclick="checkoutWhatsApp()">Checkout via WhatsApp</button>
+<button class="checkout-btn" onclick="checkoutEmail()">Checkout via Email</button>
+  
+
+</div>
 
   <p class="note">
     📌 <strong>Tip:</strong> Please <strong>save or screenshot</strong> your payment summary and <strong>send it to us via WhatsApp</strong> for faster processing.
