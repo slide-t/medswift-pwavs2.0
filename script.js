@@ -1,155 +1,165 @@
-let cart = [];
-let deliveryFee = 0;
-
-// Add to cart from manually entered input fields
-function addToCart(id) {
-  const name = document.getElementById(`pillName${id}`).value.trim();
-  const qty = parseInt(document.getElementById(`pillQty${id}`).value);
-  const price = parseFloat(document.getElementById(`pillPrice${id}`).value);
-
-  if (!name || isNaN(qty) || isNaN(price) || qty <= 0 || price <= 0) {
-    alert("Please enter valid pill details.");
-    return;
+const pillPrices = {
+  Paracetamol: {
+    Emzor: 50,
+    GSK: 70,
+    Fidson: 60,
+    May&Baker: 65,
+  },
+  Ibuprofen: {
+    Emzor: 100,
+    GSK: 120,
+    Fidson: 110,
+    MedRelief: 115,
+  },
+  Amoxicillin: {
+    Emzor: 200,
+    GSK: 250,
+    Fidson: 230,
+    GreenLife: 240,
+  },
+  VitaminC: {
+    Emzor: 80,
+    GSK: 100,
+    Fidson: 90,
+    HealthPlus: 95,
+  },
+  Loratadine: {
+    Emzor: 150,
+    GSK: 170,
+    Fidson: 160,
+    MedRelief: 165,
   }
+};
 
-  // Check if pill already exists in cart
-  const existing = cart.find(item => item.name === name);
-  if (existing) {
-    existing.qty += qty;
-  } else {
-    cart.push({ name, qty, price });
-  }
+let pillCount = 0;
+
+function addNewPillEntry() {
+  const pillList = document.getElementById("pillList");
+  const index = pillCount++;
+
+  const wrapper = document.createElement("div");
+  wrapper.className = "pill-entry";
+
+  wrapper.innerHTML = `
+    <select onchange="updateBrands(this, ${index})" class="pill-select">
+      <option disabled selected>Select Medication</option>
+      ${Object.keys(pillPrices).map(pill => `<option value="${pill}">${pill}</option>`).join("")}
+    </select>
+
+    <select onchange="updatePrice(${index})" id="brand-${index}" class="brand-select">
+      <option disabled selected>Select Brand</option>
+    </select>
+
+    <input type="number" min="1" value="1" id="qty-${index}" class="qty" onchange="updateCart()" />
+
+    <input type="text" id="price-${index}" class="price" readonly placeholder="Price" />
+
+    <button onclick="removePillEntry(this)" class="remove-btn">❌</button>
+  `;
+
+  pillList.appendChild(wrapper);
+}
+
+function updateBrands(pillSelect, index) {
+  const brandSelect = document.getElementById(`brand-${index}`);
+  const selectedPill = pillSelect.value;
+
+  const brands = Object.keys(pillPrices[selectedPill]);
+  brandSelect.innerHTML = `<option disabled selected>Select Brand</option>` + 
+    brands.map(brand => `<option value="${brand}">${brand}</option>`).join("");
+}
+
+function updatePrice(index) {
+  const pillSelect = document.querySelectorAll(".pill-select")[index];
+  const brandSelect = document.getElementById(`brand-${index}`);
+  const priceInput = document.getElementById(`price-${index}`);
+
+  const pill = pillSelect.value;
+  const brand = brandSelect.value;
+
+  const price = pillPrices[pill][brand];
+  priceInput.value = price;
 
   updateCart();
 }
 
-// Update the cart display and grand total
+function removePillEntry(button) {
+  button.parentElement.remove();
+  updateCart();
+}
+
 function updateCart() {
-  const container = document.getElementById("cartItems");
-  container.innerHTML = "";
-  let subtotal = 0;
+  let total = 0;
 
-  cart.forEach((item, index) => {
-    const itemTotal = item.price * item.qty;
-    subtotal += itemTotal;
-
-    const div = document.createElement("div");
-    div.className = "cart-item";
-    div.innerHTML = `
-      ${item.name} - ₦${item.price} x ${item.qty} = ₦${itemTotal}
-      <span class="remove-btn" onclick="removeItem(${index})">❌</span>
-    `;
-    container.appendChild(div);
+  document.querySelectorAll(".pill-entry").forEach((entry, index) => {
+    const qty = parseInt(entry.querySelector(".qty").value) || 0;
+    const price = parseFloat(entry.querySelector(".price").value) || 0;
+    total += qty * price;
   });
 
-  // Update cart icon badge
-  const cartIcon = document.querySelector(".cart-icon");
-  if (cartIcon) {
-    cartIcon.setAttribute("data-count", cart.length);
-  }
+  const delivery = getDeliveryCost();
+  const grandTotal = total + delivery;
 
-  updateGrandTotal(subtotal);
-}
-
-// Remove item from cart
-function removeItem(index) {
-  cart.splice(index, 1);
-  updateCart();
-}
-
-// Update delivery cost and refresh grand total
-function updateDeliveryCost() {
-  const select = document.getElementById("locationSelect");
-  if (!select || !select.value.includes(":")) return;
-
-  deliveryFee = parseInt(select.value.split(":")[1]);
-  document.getElementById("deliveryCost").innerHTML = `₦${deliveryFee}`;
-
-  updateGrandTotal();
-}
-
-// Update grand total
-function updateGrandTotal(subtotal = 0) {
-  if (subtotal === 0) {
-    cart.forEach(item => {
-      subtotal += item.price * item.qty;
-    });
-  }
-
-  const grandTotal = subtotal + deliveryFee;
+  document.querySelector(".cart-icon").setAttribute("data-count", document.querySelectorAll(".pill-entry").length);
   document.getElementById("grandTotal").innerHTML = `₦${grandTotal}`;
 }
 
-// Scroll to cart summary
+function getDeliveryCost() {
+  const select = document.getElementById("locationSelect");
+  const value = select.value;
+  if (!value || !value.includes(":")) return 0;
+  return parseInt(value.split(":")[1]);
+}
+
+function updateDeliveryCost() {
+  const delivery = getDeliveryCost();
+  document.getElementById("deliveryCost").innerHTML = `₦${delivery}`;
+  updateCart();
+}
+
 function scrollToCart() {
   document.querySelector(".total").scrollIntoView({ behavior: "smooth" });
 }
 
-// Print order summary
 function printOrderSummary() {
-  if (cart.length === 0) {
-    alert("Your cart is empty.");
-    return;
-  }
-
-  const newWindow = window.open("", "_blank");
-  let html = "<h2>Your Order Summary</h2><ul>";
-
-  cart.forEach(item => {
-    html += `<li>${item.name} - ₦${item.price} x ${item.qty}</li>`;
-  });
-  html += "</ul>";
-
-  const delivery = document.getElementById("deliveryCost").textContent;
-  const total = document.getElementById("grandTotal").textContent;
-
-  html += `<p>Delivery: ${delivery}</p>`;
-  html += `<h3>Total: ${total}</h3>`;
-
-  newWindow.document.write(html);
-  newWindow.document.close();
-  newWindow.print();
+  window.print();
 }
 
-// Checkout via WhatsApp
 function checkoutWhatsApp() {
-  if (cart.length === 0) {
-    alert("Your cart is empty.");
-    return;
-  }
+  const cartSummary = generateCartSummary();
+  const total = document.getElementById("grandTotal").innerText;
+  const delivery = document.getElementById("deliveryCost").innerText;
 
-  let message = "Hello, I want to complete my checkout.\n\nOrder Details:\n";
-  cart.forEach(item => {
-    message += `- ${item.name} (₦${item.price} x ${item.qty})\n`;
-  });
+  const message = `*🩺 MedSwift Order Summary*\n\n${cartSummary}\n🚚 Delivery: ${delivery}\n💵 Total: ${total}`;
+  const encodedMessage = encodeURIComponent(message);
 
-  message += `\nDelivery Fee: ₦${deliveryFee}`;
-  const total = document.getElementById("grandTotal").textContent;
-  message += `\nTotal: ${total}`;
-
-  const phoneNumber = "2349131697494";
-  const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+  const url = `https://wa.me/?text=${encodedMessage}`;
   window.open(url, "_blank");
 }
 
-// Checkout via Email
 function checkoutEmail() {
-  if (cart.length === 0) {
-    alert("Your cart is empty.");
-    return;
-  }
+  const cartSummary = generateCartSummary();
+  const total = document.getElementById("grandTotal").innerText;
+  const delivery = document.getElementById("deliveryCost").innerText;
 
-  let body = "Hello, I want to proceed with my order.\n\nOrder Summary:\n";
-  cart.forEach(item => {
-    body += `- ${item.name} (₦${item.price} x ${item.qty})\n`;
+  const subject = encodeURIComponent("MedSwift Pharmacy Order");
+  const body = encodeURIComponent(`🩺 MedSwift Order Summary\n\n${cartSummary}\n🚚 Delivery: ${delivery}\n💵 Total: ${total}`);
+
+  const mailtoLink = `mailto:?subject=${subject}&body=${body}`;
+  window.location.href = mailtoLink;
+}
+
+function generateCartSummary() {
+  let summary = "";
+  document.querySelectorAll(".pill-entry").forEach(entry => {
+    const pill = entry.querySelector(".pill-select").value;
+    const brand = entry.querySelector(".brand-select").value;
+    const qty = entry.querySelector(".qty").value;
+    const price = entry.querySelector(".price").value;
+
+    if (pill && brand && qty && price) {
+      summary += `💊 ${pill} (${brand}) x${qty} - ₦${qty * price}\n`;
+    }
   });
-
-  body += `\nDelivery Fee: ₦${deliveryFee}`;
-  const total = document.getElementById("grandTotal").textContent;
-  body += `\nTotal: ${total}`;
-
-  const email = "slideteckacademy@gmail.com";
-  const subject = "Product Checkout";
-  const mailto = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-  window.location.href = mailto;
+  return summary;
 }
