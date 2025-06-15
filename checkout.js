@@ -93,7 +93,7 @@ function printOrderSummary() {
 
 
 
-/*function checkoutWhatsApp() {
+function checkoutWhatsApp() {
   const phoneNumber = "2349131697494";
   const message = "Hello, I want to complete my checkout.";
   const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
@@ -106,4 +106,4 @@ function checkoutEmail() {
   const body = "Hello, I want to proceed with my order.";
   const mailto = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   window.location.href = mailto;
-}*/
+}
