@@ -1,3 +1,4 @@
+
 const cart = [];
 const pillPrices = {
   "Paracetamol": {"M&B": 500, "Emzor": 450},
@@ -94,9 +95,11 @@ function updateDeliveryCost() {
   document.getElementById("grandTotal").innerHTML = `&#8358;${total + cost}`;
 }
 
+
 function scrollToCart() {
   document.getElementById("cartSection").scrollIntoView({behavior: "smooth"});
 }
+
 
 function printOrderSummary() {
   window.print(); // simplified for now
