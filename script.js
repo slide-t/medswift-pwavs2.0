@@ -105,12 +105,6 @@ function printOrderSummary() {
   window.print(); // simplified for now
 }
 
-let deferredPrompt;
-const installBtn = document.getElementById('installBtn');
-
-window.addEventListener('beforeinstallprompt', (e) => {
-  e.preventDefault();
-  deferredPrompt = e;
 
   
 
