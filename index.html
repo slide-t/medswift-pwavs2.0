@@ -83,7 +83,7 @@ good<!DOCTYPE html>
           
   
    <script src="script.js"></script>
-  <script src="checkout.js"></script>
+
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
@@ -94,8 +94,14 @@ good<!DOCTYPE html>
 
   <!-- Load External checkout.js ONCE with cache busting -->
 
+<script>
+  const script = document.createElement("script");
+  script.src = "https://slide-t.github.io/checkout.js?v=1" + new Date().getTime();
+  document.body.appendChild(script);
+</script>
 
-
-    <script src="https://slide-t.github.io/medswift-checkout/checkout.js?v=1.0"></script>
+    
+  
+  
 </body>
 </html>
