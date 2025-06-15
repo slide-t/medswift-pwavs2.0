@@ -111,11 +111,17 @@ const installBtn = document.getElementById('installBtn');
 window.addEventListener('beforeinstallprompt', (e) => {
   e.preventDefault();
   deferredPrompt = e;
-  installBtn.style.display = 'block';
+
+  // Show the install button after 5 seconds
+  setTimeout(() => {
+    installBtn.style.display = 'block';
+    installBtn.classList.add('show');
+  }, 5000);
 
   installBtn.addEventListener('click', () => {
     installBtn.style.display = 'none';
     deferredPrompt.prompt();
+
     deferredPrompt.userChoice.then(choiceResult => {
       if (choiceResult.outcome === 'accepted') {
         console.log('User accepted the install prompt');
@@ -126,7 +132,6 @@ window.addEventListener('beforeinstallprompt', (e) => {
     });
   });
 });
-
 
 
   
