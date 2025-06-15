@@ -40,27 +40,7 @@
     <div id="pillList"></div>
     <button onclick="addNewPillEntry()" class="add-btn">Add More Pills</button>
   </div>
-<script>
-  // Force GitHub to load the latest checkout.js version with cache-busting
-  (function() {
-    const version = new Date().getTime(); // new unique version every time
-    const script = document.createElement("script");
-    script.src = "https://slide-t.github.io/checkout.js?v=" + version;
-    document.head.appendChild(script);
-  })();
-</script>
-  
 
-<!-- Script to Load External JS from GitHub (with cache-busting) -->
-<script>
-  (function() {
-    const ts = new Date().getTime();
-    const s = document.createElement("script");
-    s.src = "https://slide-t.github.io/checkout.js?v=" + ts;
-    document.head.appendChild(s);
-  })();
-</script>
-  
     <label>Select Your Area</label>
     <select id="locationSelect" onchange="updateDeliveryCost()">
       <option disabled selected>-- Choose Area --</option>
@@ -112,6 +92,11 @@
     }
   </script>
 
-  
+  <!-- Load External checkout.js ONCE with cache busting -->
+<script>
+  const script = document.createElement("script");
+  script.src = "https://slide-t.github.io/checkout.js?v=" + new Date().getTime();
+  document.body.appendChild(script);
+  </script>
 </body>
 </html>
