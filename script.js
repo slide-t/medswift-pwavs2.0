@@ -105,9 +105,6 @@ function printOrderSummary() {
   window.print(); // simplified for now
 }
 
-function enterApp() {
-    document.getElementById("overlay-welcome").style.display = "none";
-}
 
 
 
