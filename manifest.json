@@ -1,11 +1,15 @@
 {
   "name": "MedSwift Pharma Cart",
   "short_name": "MedSwift",
+  "description": "Order medications easily with MedSwift's offline-ready PWA cart system.",
   "start_url": "/medswift-pwavs2.0/index.html",
   "scope": "/medswift-pwavs2.0/",
   "display": "standalone",
+  "orientation": "portrait",
   "background_color": "#ffffff",
   "theme_color": "#004d40",
+  "lang": "en",
+  "dir": "ltr",
   "icons": [
     {
       "src": "/medswift-pwavs2.0/icon-192.png",
@@ -15,7 +19,8 @@
     {
       "src": "/medswift-pwavs2.0/icon-512.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     }
   ]
 }
