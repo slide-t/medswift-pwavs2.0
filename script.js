@@ -1,187 +1,184 @@
-const pillPrices = {
-  Paracetamol: { Emzor: 50, GSK: 70, Fidson: 60, "May&Baker": 65 },
-  Ibuprofen: { Emzor: 100, GSK: 120, Fidson: 110, MedRelief: 115 },
-  Amoxicillin: { Emzor: 200, GSK: 250, Fidson: 230, GreenLife: 240 },
-  VitaminC: { Emzor: 80, GSK: 100, Fidson: 90, HealthPlus: 95 },
-  Loratadine: { Emzor: 150, GSK: 170, Fidson: 160, MedRelief: 165 }
+const cart = [];
+  const pillPrices = {
+  "Paracetamol": { "M&B": 500, "Emzor": 450, "Pfizer": 520, "GSK": 510 },
+  "Ibuprofen": { "Emzor": 600, "Glaxo": 650, "Pfizer": 620, "Fidson": 610 },
+  "Amoxicillin": { "Pfizer": 800, "Emzor": 750, "GSK": 790, "Fidson": 780 },
+  "Vitamin C": { "Vitaforce": 300, "Emzor": 280, "GSK": 310, "Nature’s Way": 320 },
+  "Ciprofloxacin": { "Pfizer": 950, "Emzor": 900, "Ranbaxy": 930, "Fidson": 920 },
+  "Loratadine": { "Pfizer": 850, "Emzor": 800, "GSK": 870, "Sanofi": 860 },
+  "Metformin": { "Pfizer": 700, "Emzor": 680, "GSK": 720, "Sun Pharma": 690 },
+  "Aspirin": { "Pfizer": 600, "Emzor": 550, "Bayer": 650, "Fidson": 580 },
+  "Cetirizine": { "Pfizer": 750, "Emzor": 700, "GSK": 740, "Teva": 720 },
+  "Omeprazole": { "Pfizer": 800, "Emzor": 770, "GSK": 820, "Fidson": 810 },
+  "Antacid": { "Pfizer": 400, "Emzor": 370, "GSK": 390, "Novartis": 380 },
+  "Multivitamin": { "Pfizer": 1000, "Emzor": 950, "GSK": 980, "Nature’s Way": 1050 },
+  "Chloramphenicol": { "Emzor": 450, "GSK": 500, "Pfizer": 520, "MediCap": 470 },
+  "Doxycycline": { "Pfizer": 600, "Emzor": 580, "GSK": 620, "Fidson": 610 },
+  "Coartem": { "Novartis": 1200, "Emzor": 1100, "Fidson": 1150, "GSK": 1180 },
+  "Artemether": { "Emzor": 1000, "Fidson": 950, "GSK": 970, "Sanofi": 980 },
+  "Azithromycin": { "Pfizer": 1300, "Emzor": 1250, "GSK": 1280, "Fidson": 1270 },
+  "Erythromycin": { "Pfizer": 900, "Emzor": 880, "GSK": 910, "Fidson": 890 },
+  "Cough Syrup": { "Emzor": 400, "Fidson": 450, "GSK": 420, "Benylin": 480 },
+  "Folic Acid": { "Pfizer": 350, "Emzor": 320, "GSK": 340, "Fidson": 330 },
+  "Iron Supplement": { "Pfizer": 650, "Emzor": 600, "GSK": 620, "Fidson": 630 },
+  "Zinc Tablet": { "Pfizer": 300, "Emzor": 280, "GSK": 290, "Fidson": 295 },
+  "Calcium Tablet": { "Pfizer": 700, "Emzor": 680, "GSK": 720, "Nature Made": 710 },
+  "Magnesium Tablet": { "Pfizer": 750, "Emzor": 700, "GSK": 740, "Fidson": 730 },
+  "Cold Cap": { "Emzor": 500, "Pfizer": 520, "GSK": 510, "Fidson": 530 },
+  "Antifungal Cream": { "Pfizer": 850, "Emzor": 800, "GSK": 830, "Teva": 820 },
+  "Hydrocortisone Cream": { "Pfizer": 600, "Emzor": 580, "GSK": 610, "Fidson": 605 },
+  "Diclofenac": { "Pfizer": 700, "Emzor": 680, "GSK": 690, "Fidson": 695 },
+  "Ibucap": { "Emzor": 550, "GSK": 570, "Pfizer": 560, "Fidson": 580 },
+  "ORS Sachet": { "Emzor": 200, "GSK": 210, "Pfizer": 220, "Fidson": 215 },
+  "Naproxen": { "Pfizer": 750, "GSK": 780, "Emzor": 740, "Fidson": 760 },
+  "Pregnancy Test Strip": { "Clearblue": 600, "Emzor": 550, "GSK": 580, "MediSure": 570 },
+  "Mebendazole": { "Pfizer": 400, "Emzor": 370, "GSK": 390, "Fidson": 380 },
+  "Albendazole": { "Pfizer": 450, "Emzor": 420, "GSK": 440, "Fidson": 430 },
+  "Lactulose Syrup": { "Pfizer": 900, "GSK": 880, "Emzor": 870, "Fidson": 890 },
+  "Antihistamine": { "Pfizer": 650, "GSK": 670, "Emzor": 660, "Fidson": 655 },
+  "Clarithromycin": { "Pfizer": 1100, "Emzor": 1050, "GSK": 1080, "Fidson": 1070 },
+  "Ranitidine": { "Pfizer": 550, "GSK": 570, "Emzor": 540, "Fidson": 560 },
+  "Nystatin": { "Pfizer": 500, "GSK": 520, "Emzor": 490, "Fidson": 510 },
+  "Insulin": { "Sanofi": 2500, "Pfizer": 2600, "Novo Nordisk": 2700, "Emzor": 2400 }
 };
+  
+  
+  
 
-let pillCount = 0;
+  function addNewPillEntry() {
+    const container = document.getElementById("pillList");
+    const index = container.children.length;
+    const div = document.createElement("div");
+    div.className = "pill-entry";
+    div.innerHTML = `
+      <label>Select Medication</label>
+      <select onchange="updateBrandOptions(this, ${index})">
+        <option disabled selected>--Choose--</option>
+        ${Object.keys(pillPrices).map(p => `<option value="${p}">${p}</option>`).join('')}
+      </select>
 
-function addNewPillEntry(pillData = {}) {
-  const pillList = document.getElementById("pillList");
-  const index = pillCount++;
+      <label>Select Brand</label>
+      <select id="brandSelect-${index}" onchange="updatePriceDisplay(this, ${index})">
+        <option disabled selected>--Select Brand--</option>
+      </select>
 
-  const wrapper = document.createElement("div");
-  wrapper.className = "pill-entry";
+      <div id="priceDisplay-${index}" style="background:#eee;padding:8px;margin-top:8px;">&#8358;0</div>
+      <button onclick="addToCart(${index})" class="add-btn">Add to Cart</button>
+    `;
+    container.appendChild(div);
+  }
+function updateBrandOptions(select, index) {
+  const selectedMed = select.value;
+  const brandSelect = document.getElementById(`brandSelect-${index}`);
+  brandSelect.innerHTML = '<option disabled selected>--Select Brand--</option>';
 
-  wrapper.innerHTML = `
-    <select onchange="updateBrands(this, ${index})" class="pill-select">
-      <option disabled selected>Select Medication</option>
-      ${Object.keys(pillPrices).map(pill => 
-        `<option value="${pill}" ${pill === pillData.pill ? 'selected' : ''}>${pill}</option>`
-      ).join("")}
-    </select>
-
-    <select onchange="updatePrice(${index})" id="brand-${index}" class="brand-select">
-      <option disabled selected>Select Brand</option>
-    </select>
-
-    <input type="number" min="1" value="${pillData.qty || 1}" id="qty-${index}" class="qty" onchange="updateCart()" />
-
-    <input type="text" id="price-${index}" class="price" readonly placeholder="Price" />
-
-    <button onclick="removePillEntry(this)" class="remove-btn">❌</button>
-  `;
-
-  pillList.appendChild(wrapper);
-
-  if (pillData.pill) {
-    updateBrands(wrapper.querySelector(".pill-select"), index);
-    document.getElementById(`brand-${index}`).value = pillData.brand || "";
-    updatePrice(index);
+  if (pillPrices[selectedMed]) {
+    Object.keys(pillPrices[selectedMed]).forEach(brand => {
+      const option = document.createElement("option");
+      option.value = brand;
+      option.textContent = brand;
+      brandSelect.appendChild(option);
+    });
   }
 }
+ 
 
-function updateBrands(pillSelect, index) {
-  const brandSelect = document.getElementById(`brand-${index}`);
-  const selectedPill = pillSelect.value;
-
-  const brands = Object.keys(pillPrices[selectedPill]);
-  brandSelect.innerHTML = `<option disabled selected>Select Brand</option>` + 
-    brands.map(brand => `<option value="${brand}">${brand}</option>`).join("");
-}
-
-function updatePrice(index) {
-  const pillSelect = document.querySelectorAll(".pill-select")[index];
-  const brandSelect = document.getElementById(`brand-${index}`);
-  const priceInput = document.getElementById(`price-${index}`);
-
-  const pill = pillSelect.value;
-  const brand = brandSelect.value;
-
-  const price = pillPrices[pill][brand];
-  priceInput.value = price;
-
-  updateCart();
-}
-
-function removePillEntry(button) {
-  button.parentElement.remove();
-  updateCart();
-}
-
-function updateCart() {
-  let total = 0;
-  let totalQty = 0;
-  const cartItems = [];
-
-  document.querySelectorAll(".pill-entry").forEach((entry, index) => {
-    const pill = entry.querySelector(".pill-select").value;
-    const brand = entry.querySelector(".brand-select").value;
-    const qty = parseInt(entry.querySelector(".qty").value) || 0;
-    const price = parseFloat(entry.querySelector(".price").value) || 0;
-
-    if (pill && brand && qty && price) {
-      cartItems.push({ pill, brand, qty });
-      total += qty * price;
-      totalQty += qty;
-    }
-  });
-
-  const delivery = getDeliveryCost();
-  const grandTotal = total + delivery;
-
-  document.querySelector(".cart-icon").setAttribute("data-count", totalQty);
-  document.getElementById("grandTotal").innerHTML = `₦${grandTotal}`;
-
-  // ✅ Save cart to localStorage
-  localStorage.setItem("cart", JSON.stringify(cartItems));
-  localStorage.setItem("location", document.getElementById("locationSelect")?.value || "");
-}
-
-function getDeliveryCost() {
-  const select = document.getElementById("locationSelect");
-  const value = select?.value;
-  if (!value || !value.includes(":")) return 0;
-  return parseInt(value.split(":")[1]);
-}
-
-function updateDeliveryCost() {
-  const delivery = getDeliveryCost();
-  document.getElementById("deliveryCost").innerHTML = `₦${delivery}`;
-  updateCart();
-}
-
-function scrollToCart() {
-  document.querySelector(".total").scrollIntoView({ behavior: "smooth" });
-}
-
-function printOrderSummary() {
-  window.print();
-}
-
-function checkoutWhatsApp() {
-  const cartSummary = generateCartSummary();
-  const total = document.getElementById("grandTotal").innerText;
-  const delivery = document.getElementById("deliveryCost").innerText;
-
-  const message = `*🩺 MedSwift Order Summary*\n\n${cartSummary}\n🚚 Delivery: ${delivery}\n💵 Total: ${total}`;
-  const encodedMessage = encodeURIComponent(message);
-
-  const url = `https://wa.me/?text=${encodedMessage}`;
-  window.open(url, "_blank");
-}
-
-function checkoutEmail() {
-  const cartSummary = generateCartSummary();
-  const total = document.getElementById("grandTotal").innerText;
-  const delivery = document.getElementById("deliveryCost").innerText;
-
-  const subject = encodeURIComponent("MedSwift Pharmacy Order");
-  const body = encodeURIComponent(`🩺 MedSwift Order Summary\n\n${cartSummary}\n🚚 Delivery: ${delivery}\n💵 Total: ${total}`);
-
-  const mailtoLink = `mailto:?subject=${subject}&body=${body}`;
-  window.location.href = mailtoLink;
-}
-
-function generateCartSummary() {
-  let summary = "";
-  document.querySelectorAll(".pill-entry").forEach(entry => {
-    const pill = entry.querySelector(".pill-select").value;
-    const brand = entry.querySelector(".brand-select").value;
-    const qty = entry.querySelector(".qty").value;
-    const price = entry.querySelector(".price").value;
-
-    if (pill && brand && qty && price) {
-      summary += `💊 ${pill} (${brand}) x${qty} - ₦${qty * price}\n`;
-    }
-  });
-  return summary;
-}
-
-// ✅ Load saved cart on page load
-window.addEventListener("DOMContentLoaded", () => {
-  const savedCart = JSON.parse(localStorage.getItem("cart") || "[]");
-  const savedLocation = localStorage.getItem("location");
-
-  if (savedCart.length) {
-    savedCart.forEach(item => addNewPillEntry(item));
+  function updatePriceDisplay(brandSelect, index) {
+    const pill = brandSelect.parentElement.querySelector('select').value;
+    const brand = brandSelect.value;
+    const price = pillPrices[pill][brand];
+    document.getElementById(`priceDisplay-${index}`).innerHTML = `&#8358;${price}`;
   }
 
-  if (savedLocation && document.getElementById("locationSelect")) {
-    document.getElementById("locationSelect").value = savedLocation;
-    updateDeliveryCost();
-  } else {
+  function addToCart(index) {
+    const pill = document.querySelectorAll('.pill-entry')[index].querySelector('select').value;
+    const brand = document.getElementById(`brandSelect-${index}`).value;
+    const price = pillPrices[pill][brand];
+    cart.push({pill, brand, price});
     updateCart();
   }
-});
+
+  function updateCart() {
+    const container = document.getElementById("cartItems");
+    container.innerHTML = "";
+    let total = 0;
+    cart.forEach((item, i) => {
+      total += item.price;
+      container.innerHTML += `
+        <div class="cart-item">
+          <span>${item.pill} (${item.brand}) - &#8358;${item.price}</span>
+          <span class="remove-btn" onclick="removeItem(${i})">❌</span>
+        </div>
+      `;
+    });
+    document.getElementById("totalAmount").innerHTML = `&#8358;${total}`;
+    document.querySelector(".cart-icon").setAttribute("data-count", cart.length);
+    updateDeliveryCost();
+  }
+
+  function removeItem(index) {
+    cart.splice(index, 1);
+    updateCart();
+  }
+
+  function scrollToCart() {
+    document.getElementById("cartSection").scrollIntoView({behavior: "smooth"});
+  }
+
+  function updateDeliveryCost() {
+    const loc = document.getElementById("locationSelect").value;
+    const parts = loc.split(":");
+    const delivery = parts[1] ? parseInt(parts[1]) : 0;
+    document.getElementById("deliveryCost").innerHTML = `&#8358;${delivery}`;
+    const productTotal = cart.reduce((sum, item) => sum + item.price, 0);
+    document.getElementById("grandTotal").innerHTML = `&#8358;${productTotal + delivery}`;
+  }
+
+  function checkoutWhatsApp() {
+    const locText = document.getElementById("locationSelect").value.split(":")[0];
+    let msg = "MedSwift Order:%0A";
+    cart.forEach(item => {
+      msg += `• ${item.pill} (${item.brand}) - ₦${item.price}%0A`;
+    });
+    const delivery = document.getElementById("deliveryCost").innerText;
+    const total = document.getElementById("grandTotal").innerText;
+    msg += `Delivery to: ${locText} (${delivery})%0A`;
+    msg += `Total: ${total}`;
+    window.open(`https://wa.me/?text=${msg}`, "_blank");
+  }
+
+  function checkoutEmail() {
+    const locText = document.getElementById("locationSelect").value.split(":")[0];
+    let msg = "MedSwift Order:\n";
+    cart.forEach(item => {
+      msg += `• ${item.pill} (${item.brand}) - ₦${item.price}\n`;
+    });
+    const delivery = document.getElementById("deliveryCost").innerText;
+    const total = document.getElementById("grandTotal").innerText;
+    msg += `Delivery to: ${locText} (${delivery})\n`;
+    msg += `Total: ${total}`;
+    window.location.href = `mailto:?subject=My MedSwift Order&body=${encodeURIComponent(msg)}`;
+  }
 
 
+async function downloadOrderAsPDF() {
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
 
+  const cartItems = document.getElementById("cartItems").innerText;
 
+  if (!cartItems.trim()) {
+    alert("Your cart is empty. Please add items before downloading.");
+    return;
+  }
 
+  doc.setFontSize(14);
+  doc.text("MedSwift Pharma - Order Summary", 20, 20);
+  doc.setFontSize(12);
+  doc.text(cartItems, 20, 30);
 
+  doc.save("MedSwift_Order.pdf");
 
-
+  alert("Order saved as PDF. Please screenshot it and send via WhatsApp or email.");
+}
 
