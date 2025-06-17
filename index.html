@@ -77,36 +77,16 @@
     <option value="Sabo:1800">Sabo</option>
   </optgroup>
 </select>
-  <!--
-  <label>Select Your Area</label>
-  <select id="locationSelect" onchange="updateDeliveryCost()">
-    <option disabled selected>-- Choose Area --</option>
-    <optgroup label="Ijebu-Ode">
-      <option value="Ijebu-Ode:200">Ijebu-Ode Town</option>
-      <option value="Imoru:300">Imoru</option>
-      <option value="Odo-Egbo:250">Odo-Egbo</option>
-      <option value="Erinlu:300">Erinlu</option>
-    </optgroup>
-    <optgroup label="Ijebu-Igbo">
-      <option value="Ojowo:350">Ojowo</option>
-      <option value="Atikori:400">Atikori</option>
-      <option value="Oke-Agbo:400">Oke-Agbo</option>
-      <option value="Japara:350">Japara</option>
-    </optgroup>
-    <optgroup label="Ago-Iwoye">
-      <option value="Ago-Central:300">Ago-Central</option>
-      <option value="Itamerin:350">Itamerin</option>
-      <option value="Ilaporu:300">Ilaporu</option>
-      <option value="Molipa:400">Molipa</option>
-    </optgroup>
-  </select>
--->
   <div class="location-cost">Delivery Cost: <span id="deliveryCost">&#8358;0</span></div>
 
   <div class="total">Grand Total: <span id="grandTotal">&#8358;0</span></div>
 
   <button onclick="checkoutWhatsApp()" class="checkout-btn">Checkout via WhatsApp</button>
   <button onclick="checkoutEmail()" class="checkout-btn">Checkout via Email</button>
+</div>
+
+  <div style="background-color:  #cce6ff; color: #111; border: 1px solid #ffeeba; padding: 12px; border-radius: 6px; font-weight: bold; margin-bottom: 15px;">
+  📢 <strong>Important:</strong> After clicking the <strong>Print PDF</strong> button, please take a <strong>screenshot of the receipt</strong> and send it via <a href="https://wa.me/234XXXXXXXXXX" style="color: #0056b3; text-decoration: none;"><em>WhatsApp</em></a> or <a href="mailto:your@email.com" style="color: #0056b3; text-decoration: none;"><em>Email</em></a> for <em>easy, fast, and effective delivery</em>.
 </div>
  <button class="print-btn" onclick="printOrderPDF()">
   <span class="print-icon">🖨️</span> Print Order as PDF
