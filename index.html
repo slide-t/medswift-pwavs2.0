@@ -154,6 +154,13 @@ if ('serviceWorker' in navigator) {
   </script>
   
   <button id="makeOrderBtn" class="make-order-sidebar">🖨️ Make Order</button>
+  <div id="contactModal" class="modal-overlay" style="display:none;">
+  <div class="modal-content">
+    <h3>Select a Contact</h3>
+    <div id="contactButtons"></div>
+    <button onclick="closeModal()" style="margin-top:10px;">Cancel</button>
+  </div>
+  </div>
 </body>
 </html
   
