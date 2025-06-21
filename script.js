@@ -133,7 +133,70 @@ function updateBrandOptions(select, index) {
     const productTotal = cart.reduce((sum, item) => sum + item.price, 0);
     document.getElementById("grandTotal").innerHTML = `&#8358;${productTotal + delivery}`;
   }
+const whatsappContacts = [
+  { name: "Pharmacist A", number: "2348012345678" },
+  { name: "Pharmacist B", number: "2348098765432" },
+  { name: "Support", number: "2347011122233" }
+];
 
+const emailContacts = [
+  { name: "Orders", email: "orders@medswift.com" },
+  { name: "Helpdesk", email: "support@medswift.com" }
+];
+
+function checkoutWhatsApp() {
+  showContactModal("whatsapp");
+}
+
+function checkoutEmail() {
+  showContactModal("email");
+}
+
+function showContactModal(type) {
+  const container = document.getElementById("contactButtons");
+  container.innerHTML = ""; // clear old buttons
+  const locText = document.getElementById("locationSelect").value.split(":")[0];
+  let msg = "MedSwift Order:\n";
+  cart.forEach(item => {
+    msg += `• ${item.pill} (${item.brand}) - ₦${item.price}\n`;
+  });
+  const delivery = document.getElementById("deliveryCost").innerText;
+  const total = document.getElementById("grandTotal").innerText;
+  msg += `Delivery to: ${locText} (${delivery})\n`;
+  msg += `Total: ${total}`;
+
+  if (type === "whatsapp") {
+    whatsappContacts.forEach(contact => {
+      const btn = document.createElement("button");
+      btn.innerText = `Send to ${contact.name}`;
+      btn.onclick = () => {
+        const link = `https://wa.me/${contact.number}?text=${encodeURIComponent(msg)}`;
+        window.open(link, "_blank");
+        closeModal();
+      };
+      container.appendChild(btn);
+    });
+  } else if (type === "email") {
+    emailContacts.forEach(contact => {
+      const btn = document.createElement("button");
+      btn.innerText = `Email ${contact.name}`;
+      btn.onclick = () => {
+        const mailLink = `mailto:${contact.email}?subject=My MedSwift Order&body=${encodeURIComponent(msg)}`;
+        window.location.href = mailLink;
+        closeModal();
+      };
+      container.appendChild(btn);
+    });
+  }
+
+  document.getElementById("contactModal").style.display = "flex";
+}
+
+function closeModal() {
+  document.getElementById("contactModal").style.display = "none";
+}
+
+/*
   function checkoutWhatsApp() {
     const locText = document.getElementById("locationSelect").value.split(":")[0];
     let msg = "MedSwift Order:%0A";
@@ -159,7 +222,7 @@ function updateBrandOptions(select, index) {
     msg += `Total: ${total}`;
     window.location.href = `mailto:?subject=My MedSwift Order&body=${encodeURIComponent(msg)}`;
   }
-
+*/
 
 async function downloadOrderAsPDF() {
   const { jsPDF } = window.jspdf;
