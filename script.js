@@ -134,9 +134,9 @@ function updateBrandOptions(select, index) {
     document.getElementById("grandTotal").innerHTML = `&#8358;${productTotal + delivery}`;
   }
 const whatsappContacts = [
-  { name: "Pharmacist A", number: "2348012345678" },
-  { name: "Pharmacist B", number: "2348098765432" },
-  { name: "Support", number: "2347011122233" }
+  { name: "Pharmacist A", number: "2349131697494" },
+  { name: "Pharmacist B", number: "2349046464822" },
+  { name: "Support", number: "2347069913281" }
 ];
 
 const emailContacts = [
