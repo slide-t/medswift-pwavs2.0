@@ -1,4 +1,4 @@
-const CACHE_NAME = 'medswift-store-v2.27';
+const CACHE_NAME = 'medswift-store-v2.50';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
