@@ -59,7 +59,7 @@
     }
 
 
-/* Cart Icon */
+/* Cart Icon 
 .cart-icon {
   position: fixed;
   top: 1rem;
@@ -76,11 +76,11 @@
 .cart-icon:hover {
   transform: scale(1.1);
 }
+*/
 
 
 
 
-/*
   .cart-icon {
       position: fixed;
       top: 60px;
@@ -92,6 +92,9 @@
       cursor: pointer;
       z-index: 999;
       font-size: 2rem
+box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  transition: transform 0.3s ease;
+
     }
 
     .cart-icon::after {
@@ -111,7 +114,7 @@
       justify-content: space-between;
       margin-bottom: 8px;
     }
-*/
+
 
 
     .remove-btn {
